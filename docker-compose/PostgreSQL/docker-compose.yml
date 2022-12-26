@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=m3j2
+      - POSTGRES_PASSWORD=m3j2_admin_1234
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=m3j2@educantabria.es
+      - PGADMIN_DEFAULT_PASSWORD=m3j2_admin_1234
+    ports:
+      - 80:80
+    depends_on:
+      - postgres

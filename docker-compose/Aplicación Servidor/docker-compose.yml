@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  Server:
+    image: mcb101/gameworld_server:gameworld
+    ports:
+      - "5000:5000"
+    networks:
+      - host
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /usr/lib/gameworld/portadas
+        target: /app/gameworld/Portadas
+      - type: bind
+        source: /usr/lib/gameworld/games
+        target: /app/gameworld/Juegos
+
+networks:
+    host:
+      driver: bridge
